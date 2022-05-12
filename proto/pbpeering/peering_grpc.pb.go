@@ -32,6 +32,9 @@ type PeeringServiceClient interface {
 	PeeringWrite(ctx context.Context, in *PeeringWriteRequest, opts ...grpc.CallOption) (*PeeringWriteResponse, error)
 	// StreamResources opens an event stream for resources to share between peers, such as services.
 	// Events are streamed as they happen.
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	StreamResources(ctx context.Context, opts ...grpc.CallOption) (PeeringService_StreamResourcesClient, error)
 }
 
@@ -45,7 +48,7 @@ func NewPeeringServiceClient(cc grpc.ClientConnInterface) PeeringServiceClient {
 
 func (c *peeringServiceClient) GenerateToken(ctx context.Context, in *GenerateTokenRequest, opts ...grpc.CallOption) (*GenerateTokenResponse, error) {
 	out := new(GenerateTokenResponse)
-	err := c.cc.Invoke(ctx, "/pbpeering.PeeringService/GenerateToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/peering.PeeringService/GenerateToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +57,7 @@ func (c *peeringServiceClient) GenerateToken(ctx context.Context, in *GenerateTo
 
 func (c *peeringServiceClient) Initiate(ctx context.Context, in *InitiateRequest, opts ...grpc.CallOption) (*InitiateResponse, error) {
 	out := new(InitiateResponse)
-	err := c.cc.Invoke(ctx, "/pbpeering.PeeringService/Initiate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/peering.PeeringService/Initiate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,7 +66,7 @@ func (c *peeringServiceClient) Initiate(ctx context.Context, in *InitiateRequest
 
 func (c *peeringServiceClient) PeeringRead(ctx context.Context, in *PeeringReadRequest, opts ...grpc.CallOption) (*PeeringReadResponse, error) {
 	out := new(PeeringReadResponse)
-	err := c.cc.Invoke(ctx, "/pbpeering.PeeringService/PeeringRead", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/peering.PeeringService/PeeringRead", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +75,7 @@ func (c *peeringServiceClient) PeeringRead(ctx context.Context, in *PeeringReadR
 
 func (c *peeringServiceClient) PeeringList(ctx context.Context, in *PeeringListRequest, opts ...grpc.CallOption) (*PeeringListResponse, error) {
 	out := new(PeeringListResponse)
-	err := c.cc.Invoke(ctx, "/pbpeering.PeeringService/PeeringList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/peering.PeeringService/PeeringList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +84,7 @@ func (c *peeringServiceClient) PeeringList(ctx context.Context, in *PeeringListR
 
 func (c *peeringServiceClient) PeeringDelete(ctx context.Context, in *PeeringDeleteRequest, opts ...grpc.CallOption) (*PeeringDeleteResponse, error) {
 	out := new(PeeringDeleteResponse)
-	err := c.cc.Invoke(ctx, "/pbpeering.PeeringService/PeeringDelete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/peering.PeeringService/PeeringDelete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +93,7 @@ func (c *peeringServiceClient) PeeringDelete(ctx context.Context, in *PeeringDel
 
 func (c *peeringServiceClient) PeeringWrite(ctx context.Context, in *PeeringWriteRequest, opts ...grpc.CallOption) (*PeeringWriteResponse, error) {
 	out := new(PeeringWriteResponse)
-	err := c.cc.Invoke(ctx, "/pbpeering.PeeringService/PeeringWrite", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/peering.PeeringService/PeeringWrite", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +101,7 @@ func (c *peeringServiceClient) PeeringWrite(ctx context.Context, in *PeeringWrit
 }
 
 func (c *peeringServiceClient) StreamResources(ctx context.Context, opts ...grpc.CallOption) (PeeringService_StreamResourcesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PeeringService_ServiceDesc.Streams[0], "/pbpeering.PeeringService/StreamResources", opts...)
+	stream, err := c.cc.NewStream(ctx, &PeeringService_ServiceDesc.Streams[0], "/peering.PeeringService/StreamResources", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -142,6 +145,9 @@ type PeeringServiceServer interface {
 	PeeringWrite(context.Context, *PeeringWriteRequest) (*PeeringWriteResponse, error)
 	// StreamResources opens an event stream for resources to share between peers, such as services.
 	// Events are streamed as they happen.
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	StreamResources(PeeringService_StreamResourcesServer) error
 }
 
@@ -192,7 +198,7 @@ func _PeeringService_GenerateToken_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbpeering.PeeringService/GenerateToken",
+		FullMethod: "/peering.PeeringService/GenerateToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PeeringServiceServer).GenerateToken(ctx, req.(*GenerateTokenRequest))
@@ -210,7 +216,7 @@ func _PeeringService_Initiate_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbpeering.PeeringService/Initiate",
+		FullMethod: "/peering.PeeringService/Initiate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PeeringServiceServer).Initiate(ctx, req.(*InitiateRequest))
@@ -228,7 +234,7 @@ func _PeeringService_PeeringRead_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbpeering.PeeringService/PeeringRead",
+		FullMethod: "/peering.PeeringService/PeeringRead",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PeeringServiceServer).PeeringRead(ctx, req.(*PeeringReadRequest))
@@ -246,7 +252,7 @@ func _PeeringService_PeeringList_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbpeering.PeeringService/PeeringList",
+		FullMethod: "/peering.PeeringService/PeeringList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PeeringServiceServer).PeeringList(ctx, req.(*PeeringListRequest))
@@ -264,7 +270,7 @@ func _PeeringService_PeeringDelete_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbpeering.PeeringService/PeeringDelete",
+		FullMethod: "/peering.PeeringService/PeeringDelete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PeeringServiceServer).PeeringDelete(ctx, req.(*PeeringDeleteRequest))
@@ -282,7 +288,7 @@ func _PeeringService_PeeringWrite_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbpeering.PeeringService/PeeringWrite",
+		FullMethod: "/peering.PeeringService/PeeringWrite",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PeeringServiceServer).PeeringWrite(ctx, req.(*PeeringWriteRequest))
@@ -320,7 +326,7 @@ func (x *peeringServiceStreamResourcesServer) Recv() (*ReplicationMessage, error
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PeeringService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pbpeering.PeeringService",
+	ServiceName: "peering.PeeringService",
 	HandlerType: (*PeeringServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

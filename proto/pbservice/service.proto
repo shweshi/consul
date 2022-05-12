@@ -69,7 +69,6 @@ message ConnectProxyConfig {
 
   // LocalServiceSocketPath is the path to the unix domain socket for the local service instance
   string LocalServiceSocketPath = 11;
-  string LocalServiceSocketPath = 11;
 }
 
 // Upstream represents a single upstream dependency for a service or proxy. It
